@@ -1,0 +1,87 @@
+aid: bank-of-us
+name: Bank of us
+review:
+  question: Does Bank of us expose a live, public Consumer Data Right (CDR) Product
+    Reference Data API, and is there a proprietary developer portal or spec?
+  answer: true
+  date: '2026-07-20'
+  reviewer: API Evangelist
+  cdrPrdConfirmed: true
+  developerPortal: false
+  specProvenance: DSB Consumer Data Standards (shared CDS Banking API standard, not
+    a bank-proprietary contract).
+findings:
+  summary: |
+    Bank of us (B&E Ltd, brand "BNE LTD"), Tasmania's only customer-owned mutual
+    bank, participates in Australia's Consumer Data Right as a data holder. Its
+    public, unauthenticated Product Reference Data (PRD) API is live: a GET on
+    https://api.bankofus.com.au/OpenBanking/cds-au/v1/banking/products returned
+    HTTP 200 with an x-v response header of 4 and a well-formed data.products
+    array (meta.totalRecords 27). Version negotiation behaves per the standard:
+    x-v: 3 is rejected with HTTP 406 (Not Acceptable) while x-v: 4 succeeds. The
+    registered CDR public base URI is https://api.bankofus.com.au/OpenBanking/cds-au/v1
+    (confirmed against the community Australian Open Banking Data Database and by
+    live fetch). The endpoint conforms to the Data Standards Body (DSB) Consumer
+    Data Standards CDR Banking API; the harvested OpenAPI is the shared DSB CDS
+    standard (openapi 3.0.3, title "CDR Banking API", version 1.36.0), NOT a
+    Bank-of-us-proprietary contract. No dedicated developer portal
+    (developer.bankofus.com.au does not resolve) and no public GitHub organisation
+    (github.com/bankofus -> 404) were found. Consumer-facing CDR context lives at
+    the /open-banking page. Authenticated CDR consumer-data sharing (accounts,
+    transactions) uses the CDR ADR/OAuth2 + OIDC consent model brokered through
+    Internet Banking identity verification and a one-time password, per the ACCC-
+    regulated framework; only the PRD surface is public and unauthenticated.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.bankofus.com.au/OpenBanking/cds-au/v1
+      documented: true
+      note: Public unauthenticated CDR Product Reference Data. Standard header-based
+        version negotiation via x-v (current supported version 4).
+  authModel:
+    productReferenceData: None (public, unauthenticated PRD per CDR standard).
+    consumerData: CDR Accredited Data Recipient model — OAuth2 / OpenID Connect
+      consent and authorisation, brokered via Bank of us Internet Banking identity
+      verification and one-time password; not publicly accessible.
+  endpointsConfirmed:
+    - GET https://api.bankofus.com.au/OpenBanking/cds-au/v1/banking/products
+    - GET https://api.bankofus.com.au/OpenBanking/cds-au/v1/banking/products/{productId}
+  httpProbes:
+    - url: https://api.bankofus.com.au/OpenBanking/cds-au/v1/banking/products?page-size=2
+      header: 'x-v: 4'
+      status: 200
+      note: JSON body with data.products (2 returned), meta.totalRecords 27, x-v response header 4.
+    - url: https://api.bankofus.com.au/OpenBanking/cds-au/v1/banking/products?page-size=2
+      header: 'x-v: 3'
+      status: 406
+      note: Not Acceptable — requested API version not supported.
+    - url: https://developer.bankofus.com.au/
+      status: 000
+      note: Host does not resolve — no dedicated developer portal.
+    - url: https://github.com/bankofus
+      status: 404
+      note: No public GitHub organisation.
+    - url: https://www.bankofus.com.au/open-banking
+      status: 200
+      note: Consumer-facing Consumer Data Right / Open Banking information page.
+sources:
+  - url: https://www.bankofus.com.au/open-banking
+    type: Documentation
+    note: Bank of us Open Banking / CDR data-holder information page.
+  - url: https://github.com/LukePrior/Australian-Open-Banking-Data-Database
+    type: Reference
+    note: Community register of Australian ADI CDR public base URIs; lists Bank of
+      us as https://api.bankofus.com.au/OpenBanking/cds-au/v1.
+  - url: https://consumerdatastandardsaustralia.github.io/standards/
+    type: APIReference
+    note: DSB Consumer Data Standards — source of the shared CDR Banking API OpenAPI
+      (v1.36.0) harvested into openapi/.
+actions:
+  openapiPath: openapi/bank-of-us-cds-banking-products-openapi.yml
+  openapiProvenance: |
+    Harvested verbatim from the DSB Consumer Data Standards CDR Banking API
+    (cds_banking.json, openapi 3.0.3, version 1.36.0). This is the shared,
+    standard CDS contract that Bank of us's public PRD endpoint conforms to — it
+    is not a Bank-of-us-proprietary specification. The file retains all 16 banking
+    paths from the standard, including the two public PRD product paths.
+  apisYmlUpdated: true
