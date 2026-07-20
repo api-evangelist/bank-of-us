@@ -1,0 +1,31 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Bank of us CDR Banking API
+  version: 1.0.0
+extends: openapi/bank-of-us-cds-banking-products-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: Bank of us (B&E Ltd)
+    x-apievangelist-public-base-url: https://api.bankofus.com.au/OpenBanking/cds-au/v1
+    x-apievangelist-spec-provenance: >-
+      Shared DSB Consumer Data Standards banking contract (CDR Banking API
+      v1.36.0), not a Bank-of-us-proprietary spec. Server URL in the base document
+      is the standard's placeholder (mtls.dh.example.com); the real Bank of us
+      public base is api.bankofus.com.au/OpenBanking/cds-au/v1.
+    x-apievangelist-cdr-data-holder: true
+- target: $.servers
+  update:
+  - url: https://api.bankofus.com.au/OpenBanking/cds-au/v1
+    description: Bank of us public CDR base (Product Reference Data endpoints are unauthenticated).
+- target: $.paths['/banking/products'].get
+  update:
+    x-apievangelist-public: true
+    x-apievangelist-auth: none
+    x-apievangelist-live-version: 4
+    x-apievangelist-note: Confirmed live HTTP 200 with x-v 4 (27 products) on 2026-07-20; x-v 3 -> 406.
+- target: $.paths['/banking/products/{productId}'].get
+  update:
+    x-apievangelist-public: true
+    x-apievangelist-auth: none
+    x-apievangelist-live-version: 7

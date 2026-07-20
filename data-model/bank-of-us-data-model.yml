@@ -1,0 +1,71 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/bank-of-us-cds-banking-products-openapi.yml
+docs: https://consumerdatastandardsaustralia.github.io/standards/#banking-products
+note: >-
+  Entity-relationship graph derived from the CDS banking product schemas
+  (ResponseBankingProductListV4 -> BankingProductV4; ResponseBankingProductByIdV7
+  -> BankingProductDetailV7). Scoped to the public Product Reference Data surface.
+entities:
+- name: BankingProduct
+  id_field: productId
+  id_type: BankingProductId (data-holder-specific, not permanence-guaranteed)
+  category_enum: BankingProductCategoryV2
+  summary: Summary product returned by GET /banking/products (list view).
+- name: BankingProductDetail
+  extends: BankingProduct
+  summary: Full product returned by GET /banking/products/{productId} (allOf BankingProductV4 + detail).
+- name: BankingProductFeature
+  schema: BankingProductFeatureV4
+- name: BankingProductConstraint
+  schema: BankingProductConstraintV3
+- name: BankingProductEligibility
+  schema: BankingProductEligibilityV2
+- name: BankingProductFee
+  schema: BankingProductFeeV2
+- name: BankingProductDepositRate
+  schema: BankingProductDepositRateV2
+- name: BankingProductLendingRate
+  schema: BankingProductLendingRateV3
+- name: BankingProductBundle
+  schema: BankingProductBundle
+- name: BankingProductInstalments
+  schema: BankingProductInstalments
+relationships:
+- from: BankingProductDetail
+  to: BankingProductFeature
+  kind: has_many
+  via: features
+- from: BankingProductDetail
+  to: BankingProductConstraint
+  kind: has_many
+  via: constraints
+- from: BankingProductDetail
+  to: BankingProductEligibility
+  kind: has_many
+  via: eligibility
+- from: BankingProductDetail
+  to: BankingProductFee
+  kind: has_many
+  via: fees
+- from: BankingProductDetail
+  to: BankingProductDepositRate
+  kind: has_many
+  via: depositRates
+- from: BankingProductDetail
+  to: BankingProductLendingRate
+  kind: has_many
+  via: lendingRates
+- from: BankingProductDetail
+  to: BankingProductBundle
+  kind: has_many
+  via: bundles
+- from: BankingProductDetail
+  to: BankingProductInstalments
+  kind: has_one
+  via: instalments
+- from: BankingProductBundle
+  to: BankingProduct
+  kind: has_many
+  via: productIds
+  note: References other products participating in the same bundle.

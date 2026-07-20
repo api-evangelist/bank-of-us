@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+note: >-
+  Probed the well-known discovery surface on both Bank of us hosts on 2026-07-20.
+  The api host (api.bankofus.com.au) returns 403 for all /.well-known/* paths (WAF).
+  A genuine RFC 9116 security.txt is published on the website apex
+  (https://bankofus.com.au/.well-known/security.txt, reached via 301 from www) and
+  saved verbatim as bank-of-us-security.txt. No OIDC/oauth-authorization-server
+  document is public — the CDR OIDC discovery document is published on the
+  ADR-facing infosec baseline endpoint (behind MTLS/accreditation).
+hosts:
+- host: https://bankofus.com.au
+  documents:
+  - {path: /.well-known/security.txt, status: 200, file: bank-of-us-security.txt}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+- host: https://api.bankofus.com.au
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/openid-configuration, status: 403}
+  - {path: /.well-known/oauth-authorization-server, status: 403}
+  - {path: /.well-known/api-catalog, status: 403}
+  - {path: /.well-known/ai-plugin.json, status: 403}

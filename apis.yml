@@ -52,6 +52,40 @@ apis:
     at the time of review). The endpoint conforms to the DSB Consumer Data Standards
     CDR Banking API (v1.36.0) and supports GET /banking/products and GET /banking/products/{productId}.
 common:
+- type: Authentication
+  url: authentication/bank-of-us-authentication.yml
+- type: OAuthScopes
+  url: scopes/bank-of-us-scopes.yml
+- type: Conformance
+  url: conformance/bank-of-us-conformance.yml
+- type: ErrorCatalog
+  url: errors/bank-of-us-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/bank-of-us-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/bank-of-us-lifecycle.yml
+- type: Conventions
+  url: conventions/bank-of-us-conventions.yml
+- type: DataModel
+  url: data-model/bank-of-us-data-model.yml
+- type: Overlay
+  url: overlays/bank-of-us-cds-banking-products-overlay.yaml
+- type: LLMsTxt
+  url: llms/bank-of-us-llms.txt
+- type: MCPServer
+  url: mcp/bank-of-us-mcp.yml
+- type: AgentSkill
+  url: skills/bank-of-us-product-lookup.md
+- type: WellKnown
+  url: well-known/bank-of-us-well-known.yml
+- type: SecurityTxt
+  url: well-known/bank-of-us-security.txt
+- type: VulnerabilityDisclosure
+  url: security/bank-of-us-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/bank-of-us-domain-security.yml
+- type: Security
+  url: https://bankofus.com.au/.well-known/security.txt
 - type: Website
   url: https://www.bankofus.com.au/
 - type: Documentation

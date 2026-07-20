@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/bank-of-us-cds-banking-products-openapi.yml (x-scopes)
+docs: https://consumerdatastandardsaustralia.github.io/standards/#authorisation-scopes
+note: >-
+  The shared DSB CDS banking OpenAPI declares no oauth2 securityScheme (the CDR
+  Security Profile lives outside the spec), so these scopes are derived from the
+  per-operation x-scopes extension in the spec, which mirrors the CDR banking
+  authorisation-scopes registry. Scopes apply ONLY to the authenticated
+  consumer-data endpoints; the public Product Reference Data endpoints require no
+  scope.
+schemes:
+- name: CDR-OAuth2
+  source: CDR Security Profile (FAPI OAuth2 authorization code)
+  flows:
+  - flow: authorizationCode
+scopes:
+- scope: bank:accounts.basic:read
+  description: Read basic account information (account list, product category, balances at basic level).
+  sources: [openapi/bank-of-us-cds-banking-products-openapi.yml]
+- scope: bank:accounts.detail:read
+  description: Read detailed account information (account detail, features, addresses, MTLS-protected).
+  sources: [openapi/bank-of-us-cds-banking-products-openapi.yml]
+- scope: bank:transactions:read
+  description: Read account transactions and transaction detail.
+  sources: [openapi/bank-of-us-cds-banking-products-openapi.yml]
+- scope: bank:regular_payments:read
+  description: Read scheduled payments, direct debits and other regular payment arrangements.
+  sources: [openapi/bank-of-us-cds-banking-products-openapi.yml]
+- scope: bank:payees:read
+  description: Read saved payees.
+  sources: [openapi/bank-of-us-cds-banking-products-openapi.yml]

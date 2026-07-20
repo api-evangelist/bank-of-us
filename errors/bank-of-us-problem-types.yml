@@ -1,0 +1,54 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/bank-of-us-cds-banking-products-openapi.yml
+docs: https://consumerdatastandardsaustralia.github.io/standards/#error-codes
+format: cds-error-list-v2
+note: >-
+  Derived from the 4xx responses on the public Product Reference Data operations
+  (all reference ResponseErrorListV2) and enriched with the standardised CDR error
+  code registry (urn:au-cds:error:*). NOT RFC 9457: the CDS error envelope is
+  ResponseErrorListV2 { errors: [ { code, title, detail, meta } ] }.
+envelope:
+  schema: ResponseErrorListV2
+  shape: '{ "errors": [ { "code": "<urn>", "title": "...", "detail": "...", "meta": {} } ] }'
+  error_object: ErrorV2
+  required_fields: [code, title, detail]
+problems:
+- status: 400
+  code: urn:au-cds:error:cds:all:field:invalid
+  title: Invalid Field
+  detail: A field value provided (e.g. the effective or updated-since query param) is not valid.
+  source_operation: openapi/bank-of-us-cds-banking-products-openapi.yml#listBankingProducts
+- status: 400
+  code: urn:au-cds:error:cds:all:field:missing
+  title: Missing Required Field
+  detail: A required field was not supplied.
+  source_operation: openapi/bank-of-us-cds-banking-products-openapi.yml#listBankingProducts
+- status: 404
+  code: urn:au-cds:error:cds:banking:product:invalid
+  title: Invalid Banking Product
+  detail: The requested productId does not correspond to a valid banking product.
+  source_operation: openapi/bank-of-us-cds-banking-products-openapi.yml#getBankingProductDetail
+- status: 406
+  code: urn:au-cds:error:cds:all:header:invalid-version
+  title: Unsupported Version
+  detail: >-
+    The requested API version (x-v) is not supported by the endpoint. Confirmed
+    live: x-v 3 returns 406 (Not Acceptable) while x-v 4 succeeds on
+    GET /banking/products.
+  source_operation: openapi/bank-of-us-cds-banking-products-openapi.yml#listBankingProducts
+- status: 406
+  code: urn:au-cds:error:cds:all:header:missing-version
+  title: Missing Required Header
+  detail: The mandatory x-v version header was not supplied.
+  source_operation: openapi/bank-of-us-cds-banking-products-openapi.yml#listBankingProducts
+- status: 422
+  code: urn:au-cds:error:cds:all:field:invalid-page
+  title: Invalid Page
+  detail: The requested page is out of range or the page/page-size combination is invalid.
+  source_operation: openapi/bank-of-us-cds-banking-products-openapi.yml#listBankingProducts
+- status: 422
+  code: urn:au-cds:error:cds:all:field:invalid-page-size
+  title: Invalid Page Size
+  detail: The requested page-size is outside the allowed bounds.
+  source_operation: openapi/bank-of-us-cds-banking-products-openapi.yml#listBankingProducts

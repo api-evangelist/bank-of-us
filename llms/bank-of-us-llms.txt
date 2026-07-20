@@ -1,0 +1,29 @@
+# Bank of us
+
+> Bank of us (B&E Ltd, brand "BNE LTD") is Tasmania's only customer-owned mutual bank, a regulated authorised deposit-taking institution (ADI) headquartered in Launceston. As an active Consumer Data Right (CDR) data holder it exposes a public, unauthenticated Product Reference Data (PRD) API conforming to the DSB Consumer Data Standards, alongside the accredited-data-recipient consumer-data-sharing channels required of every Australian bank.
+
+## APIs
+
+- [Bank of us CDR Product Reference Data API](https://www.bankofus.com.au/open-banking): Public, unauthenticated CDR Product Reference Data (PRD) API exposing Bank of us's publicly available banking products (home loans, personal/business banking, savings, term deposits) via GET /banking/products and GET /banking/products/{productId}. Live base: https://api.bankofus.com.au/OpenBanking/cds-au/v1 (HTTP 200, x-v 4, 27 products).
+
+## Specs
+
+- [OpenAPI (CDR Banking API v1.36.0, shared DSB standard)](https://raw.githubusercontent.com/api-evangelist/bank-of-us/refs/heads/main/openapi/bank-of-us-cds-banking-products-openapi.yml)
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/bank-of-us/refs/heads/main/authentication/bank-of-us-authentication.yml)
+- [OAuth scopes (CDR banking, consumer-data channel)](https://raw.githubusercontent.com/api-evangelist/bank-of-us/refs/heads/main/scopes/bank-of-us-scopes.yml)
+- [Conventions (versioning, pagination, error envelope)](https://raw.githubusercontent.com/api-evangelist/bank-of-us/refs/heads/main/conventions/bank-of-us-conventions.yml)
+- [Error catalog (CDS ResponseErrorListV2 + urn:au-cds registry)](https://raw.githubusercontent.com/api-evangelist/bank-of-us/refs/heads/main/errors/bank-of-us-problem-types.yml)
+- [Lifecycle / versioning](https://raw.githubusercontent.com/api-evangelist/bank-of-us/refs/heads/main/lifecycle/bank-of-us-lifecycle.yml)
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/bank-of-us/refs/heads/main/conformance/bank-of-us-conformance.yml)
+- [Data model / ERD](https://raw.githubusercontent.com/api-evangelist/bank-of-us/refs/heads/main/data-model/bank-of-us-data-model.yml)
+- [Agent skill: product lookup](https://raw.githubusercontent.com/api-evangelist/bank-of-us/refs/heads/main/skills/bank-of-us-product-lookup.md)
+
+## Docs
+
+- [Bank of us Open Banking (CDR) information](https://www.bankofus.com.au/open-banking)
+- [DSB Consumer Data Standards — Banking APIs](https://consumerdatastandardsaustralia.github.io/standards/#banking-apis)
+- [Bank of us website](https://www.bankofus.com.au/)
+- [Blog](https://www.bankofus.com.au/blog)
+- [Privacy policy](https://www.bankofus.com.au/privacy-policy)
+- [security.txt](https://bankofus.com.au/.well-known/security.txt)
+- [Contact / support](https://www.bankofus.com.au/contact)

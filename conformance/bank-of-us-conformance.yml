@@ -1,0 +1,50 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/bank-of-us-cds-banking-products-openapi.yml
+docs: https://consumerdatastandardsaustralia.github.io/standards/#banking-apis
+note: >-
+  Asserts the cross-cutting standards the Bank of us public API conforms to as an
+  active CDR data holder. Derived from the harvested shared DSB Consumer Data
+  Standards banking spec (CDR Banking API v1.36.0) and confirmed live behaviour;
+  compliance claims for the consumer-data channel reflect the CDR regime, not a
+  bank-proprietary contract.
+standards:
+- id: cdr-consumer-data-standards
+  conforms: true
+  evidence: >-
+    Public PRD endpoint live at api.bankofus.com.au/OpenBanking/cds-au/v1
+    conforming to DSB CDS Banking API v1.36.0; Bank of us listed on the CDR data
+    holder register.
+- id: cds-version-negotiation
+  conforms: true
+  evidence: Mandatory x-v / x-min-v request header version negotiation (x-v 4 served live; x-v 3 -> 406 Not Acceptable).
+- id: cds-pagination
+  conforms: true
+  evidence: page / page-size query params with links.first/prev/next/last and meta.totalRecords/totalPages (LinksPaginated / MetaPaginated).
+- id: fapi-2.0
+  conforms: true
+  evidence: CDR Security Profile is FAPI-based (consumer-data channel); PAR + PKCE + MTLS-bound tokens. Not exercised on the public PRD channel.
+  scope: consumer-data channel only
+- id: oauth2
+  conforms: true
+  evidence: CDR consent via OAuth2 authorization code (consumer-data channel). Public PRD is unauthenticated.
+  scope: consumer-data channel only
+- id: oidc
+  conforms: true
+  evidence: OpenID Connect underpins CDR consent/ID tokens.
+  scope: consumer-data channel only
+- id: mutual-tls
+  conforms: true
+  evidence: Consumer-data (holder) endpoints served over MTLS per CDR Security Profile.
+  scope: consumer-data channel only
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use the CDS ResponseErrorListV2 / ErrorV2 envelope (errors[] with
+    code/title/detail/meta), not application/problem+json.
+- id: cds-error-code-registry
+  conforms: true
+  evidence: Standardised urn:au-cds:error:* code registry via ErrorV2.code.
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: Live RFC 9116 security.txt published at https://bankofus.com.au/.well-known/security.txt (Contact, Policy, Encryption, Acknowledgements, Expiration).

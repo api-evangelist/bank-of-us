@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/bank-of-us-cds-banking-products-openapi.yml
+note: >-
+  No official hosted/remote MCP server was found for Bank of us. This is a
+  candidate tool list derived from the two public, unauthenticated Product
+  Reference Data operations (the only endpoints callable without CDR ADR
+  accreditation and consumer consent).
+server:
+  name: bank-of-us
+  transport: http
+tools:
+- name: list_banking_products
+  description: >-
+    List Bank of us's publicly available banking products (home loans, personal and
+    business banking, savings, term deposits). Supports effective (CURRENT/FUTURE/ALL),
+    updated-since, brand, product-category filters and page/page-size pagination.
+    Requires the x-v request header (currently 4).
+  source_operation: openapi/bank-of-us-cds-banking-products-openapi.yml#listBankingProducts
+  auth: none
+- name: get_banking_product_detail
+  description: >-
+    Retrieve the full detail for one product by productId, including features,
+    constraints, eligibility, fees, deposit rates, lending rates, bundles and
+    instalments. Requires the x-v request header (currently 7).
+  source_operation: openapi/bank-of-us-cds-banking-products-openapi.yml#getBankingProductDetail
+  auth: none

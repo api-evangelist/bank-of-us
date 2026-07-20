@@ -1,0 +1,7 @@
+generated: '2026-07-20'
+method: generated
+skills:
+- file: bank-of-us-product-lookup.md
+  name: Look up Bank of us banking products
+  api: openapi/bank-of-us-cds-banking-products-openapi.yml
+  operations: [listBankingProducts, getBankingProductDetail]

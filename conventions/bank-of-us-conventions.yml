@@ -1,0 +1,56 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/bank-of-us-cds-banking-products-openapi.yml
+docs: https://consumerdatastandardsaustralia.github.io/standards/#introduction
+note: >-
+  Cross-cutting request/response semantics for Bank of us's CDR Banking API,
+  derived from the shared DSB Consumer Data Standards contract. The public Product
+  Reference Data channel is read-only (GET) and unauthenticated; there is no
+  idempotency contract (no unsafe methods on the public surface).
+authentication:
+  public_prd: none (unauthenticated; x-v version negotiation only)
+  consumer_data: CDR Security Profile (FAPI OAuth2 authorization code + PAR + PKCE, OIDC, MTLS-bound tokens)
+  ref: authentication/bank-of-us-authentication.yml
+versioning:
+  style: header-integer
+  request_headers: [x-v, x-min-v]
+  response_headers: [x-v]
+  ref: lifecycle/bank-of-us-lifecycle.yml
+idempotency:
+  supported: false
+  reason: >-
+    The public PRD surface is read-only (GET). CDR banking defines no
+    idempotency-key contract; unsafe methods do not exist on this API.
+pagination:
+  style: page-number
+  request_params: [page, page-size]
+  page_size_default: 25
+  page_size_max: 1000
+  response_links: [self, first, prev, next, last]
+  response_meta: [totalRecords, totalPages]
+  link_schema: LinksPaginated
+  meta_schema: MetaPaginated
+filtering:
+  banking_products:
+  - name: effective
+    values: [CURRENT, FUTURE, ALL]
+    default: CURRENT
+  - name: updated-since
+    type: DateTimeString
+  - name: brand
+  - name: product-category
+    schema: BankingProductCategoryV2
+field_expansion:
+  supported: false
+metadata:
+  envelope: 'Every success response wraps { data, links, meta }.'
+request_tracing:
+  public_prd: none
+  consumer_data: x-fapi-interaction-id (FAPI interaction correlation header on authenticated endpoints)
+error_envelope:
+  schema: ResponseErrorListV2
+  shape: '{ "errors": [ { "code": "<urn:au-cds:error:*>", "title", "detail", "meta" } ] }'
+  ref: errors/bank-of-us-problem-types.yml
+rate_limiting:
+  documented: false
+  note: CDR defines traffic-thresholds obligations for holders; no per-response rate-limit headers on the public PRD channel.

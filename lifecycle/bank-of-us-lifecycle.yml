@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/bank-of-us-cds-banking-products-openapi.yml
+docs: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+note: >-
+  Bank of us's public API is the shared CDR Banking contract; its lifecycle is
+  governed by the DSB Consumer Data Standards versioning process rather than a
+  bank-proprietary policy. No Bank-of-us-run developer status page or SLA page was
+  found (developer.bankofus.com.au does not resolve; no status subdomain located
+  on 2026-07-20).
+versioning:
+  scheme: header-integer
+  mechanism: >-
+    Per-endpoint integer version negotiated via the mandatory x-v request header
+    (with optional x-min-v). The endpoint responds with the highest supported
+    version in the requested range and echoes it in the x-v response header.
+  current:
+    listBankingProducts: 4
+    getBankingProductDetail: 7
+  live_observed: GET /banking/products serves x-v 4 (x-v 3 -> 406 Not Acceptable; x-v 4 -> 200).
+  docs: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+deprecation:
+  policy: >-
+    CDS operates a version obsolescence process: older endpoint versions are
+    marked obsolete and eventually retired via the Data Standards Body maintenance
+    iterations and the Future Dated Obligations schedule. Obsolete product
+    versions are explicitly enumerated in the spec (products v1-v4; product detail
+    v1-v6).
+  policy_url: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+  obsolete_versions:
+    listBankingProducts: [v1, v2, v3, v4]
+    getBankingProductDetail: [v1, v2, v3, v4, v5, v6]
+  sunset_header: false
+sla:
+  url: null
+  uptime_target: null
+  note: No public SLA/uptime target published for the CDR PRD endpoint.
+status_page: null
+deprecated_operations: []
