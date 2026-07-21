@@ -153,6 +153,8 @@ apis:
     (Get Payee Detail). Standardized across all Australian ADIs by the Data Standards
     Body; not bank-proprietary.
 common:
+- type: AgenticAccess
+  url: agentic-access/bank-of-us-agentic-access.yml
 - type: Authentication
   url: authentication/bank-of-us-authentication.yml
 - type: OAuthScopes
