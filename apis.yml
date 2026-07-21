@@ -24,7 +24,7 @@ tags:
 - Mutual
 - Product Reference Data
 created: '2026-07-20'
-modified: '2026-07-20'
+modified: '2026-07-21'
 specificationVersion: '0.19'
 apis:
 - aid: bank-of-us:bank-of-us-cdr-product-reference-data-api
@@ -36,10 +36,10 @@ apis:
   - Banking
   - Products
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.bankofus.com.au/open-banking
-  baseURL: https://api.bankofus.com.au/OpenBanking/cds-au/v1
+  humanURL: https://bankofus.com.au/open-banking
+  baseURL: https://api.bankofus.com.au/OpenBanking/cds-au/v1/banking/products
   properties:
-  - url: https://www.bankofus.com.au/open-banking
+  - url: https://bankofus.com.au/open-banking
     type: Documentation
   - url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
     type: APIReference
@@ -47,10 +47,111 @@ apis:
     type: OpenAPI
   description: Public, unauthenticated Consumer Data Right Product Reference Data (PRD)
     API. A live GET on https://api.bankofus.com.au/OpenBanking/cds-au/v1/banking/products
-    returns HTTP 200 with an x-v response header of 4 and a data.products array (27
-    products across home loans, personal/business banking, savings, and term deposits
-    at the time of review). The endpoint conforms to the DSB Consumer Data Standards
-    CDR Banking API (v1.36.0) and supports GET /banking/products and GET /banking/products/{productId}.
+    returns HTTP 200 (verified 2026-07-21) with an x-v response header of 4 and a data.products
+    array of 27 products across home loans, personal/business banking, savings, and
+    term deposits. Requires the x-v request header (currently version 4). Conforms
+    to the DSB Consumer Data Standards CDR Banking API (v1.36.0) and covers GET /banking/products
+    and GET /banking/products/{productId}. No authentication or CDR consent required.
+- aid: bank-of-us:bank-of-us-cdr-accounts-balances-api
+  name: Bank of us CDR Accounts & Balances API
+  tags:
+  - Open Banking
+  - CDR
+  - Banking
+  - Accounts
+  - Balances
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://bankofus.com.au/open-banking
+  baseURL: https://api.bankofus.com.au/OpenBanking/cds-au/v1/banking/accounts
+  properties:
+  - url: https://bankofus.com.au/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
+    type: APIReference
+  - url: openapi/bank-of-us-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Consumer-authorized Consumer Data Right accounts and balances surface
+    of the DSB CDR Banking API (v1.36.0). Unlike the public Product Reference Data
+    endpoints, these require an authorized CDR data-sharing consent flowing through
+    an Accredited Data Recipient (ADR), OAuth2/OIDC authentication and MTLS. Covers
+    GET /banking/accounts (Get Accounts), GET /banking/accounts/balances (Get Bulk
+    Balances), POST /banking/accounts/balances (Get Balances For Specific Accounts),
+    GET /banking/accounts/{accountId}/balance (Get Account Balance) and GET /banking/accounts/{accountId}
+    (Get Account Detail). Not directly callable without an active consumer consent.
+- aid: bank-of-us:bank-of-us-cdr-transactions-api
+  name: Bank of us CDR Transactions API
+  tags:
+  - Open Banking
+  - CDR
+  - Banking
+  - Transactions
+  - Accounts
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://bankofus.com.au/open-banking
+  baseURL: https://api.bankofus.com.au/OpenBanking/cds-au/v1/banking/accounts/{accountId}/transactions
+  properties:
+  - url: https://bankofus.com.au/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions
+    type: APIReference
+  - url: openapi/bank-of-us-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Consumer-authorized transaction-history surface of the DSB CDR Banking
+    API (v1.36.0). Requires an authorized CDR data-sharing consent through an Accredited
+    Data Recipient (ADR) with OAuth2/OIDC and MTLS; it is not a public endpoint. Covers
+    GET /banking/accounts/{accountId}/transactions (Get Transactions For Account, with
+    date, amount and text filtering) and GET /banking/accounts/{accountId}/transactions/{transactionId}
+    (Get Transaction Detail). Standardized across all Australian ADIs by the Data Standards
+    Body; not bank-proprietary.
+- aid: bank-of-us:bank-of-us-cdr-direct-debits-scheduled-payments-api
+  name: Bank of us CDR Direct Debits & Scheduled Payments API
+  tags:
+  - Open Banking
+  - CDR
+  - Banking
+  - Direct Debits
+  - Scheduled Payments
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://bankofus.com.au/open-banking
+  baseURL: https://api.bankofus.com.au/OpenBanking/cds-au/v1/banking/accounts/direct-debits
+  properties:
+  - url: https://bankofus.com.au/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
+    type: APIReference
+  - url: openapi/bank-of-us-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Consumer-authorized direct-debit and scheduled-payment surface of the
+    DSB CDR Banking API (v1.36.0). Requires an authorized CDR data-sharing consent
+    through an Accredited Data Recipient (ADR) with OAuth2/OIDC and MTLS. Covers GET
+    /banking/accounts/{accountId}/direct-debits, POST /banking/accounts/direct-debits
+    (Get Direct Debits For Specific Accounts), GET /banking/accounts/{accountId}/payments/scheduled
+    and POST /banking/payments/scheduled (Get Scheduled Payments). Standardized by
+    the Data Standards Body across all Australian ADIs; not bank-proprietary.
+- aid: bank-of-us:bank-of-us-cdr-payees-api
+  name: Bank of us CDR Payees API
+  tags:
+  - Open Banking
+  - CDR
+  - Banking
+  - Payees
+  - Accounts
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://bankofus.com.au/open-banking
+  baseURL: https://api.bankofus.com.au/OpenBanking/cds-au/v1/banking/payees
+  properties:
+  - url: https://bankofus.com.au/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
+    type: APIReference
+  - url: openapi/bank-of-us-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Consumer-authorized saved-payees surface of the DSB CDR Banking API
+    (v1.36.0). Requires an authorized CDR data-sharing consent through an Accredited
+    Data Recipient (ADR) with OAuth2/OIDC and MTLS; it is not a public endpoint. Covers
+    GET /banking/payees (Get Payees, listing the customer's saved payees) and GET /banking/payees/{payeeId}
+    (Get Payee Detail). Standardized across all Australian ADIs by the Data Standards
+    Body; not bank-proprietary.
 common:
 - type: Authentication
   url: authentication/bank-of-us-authentication.yml
@@ -89,7 +190,11 @@ common:
 - type: Website
   url: https://www.bankofus.com.au/
 - type: Documentation
-  url: https://www.bankofus.com.au/open-banking
+  url: https://bankofus.com.au/open-banking
+- type: DeveloperPortal
+  url: https://bankofus.com.au/open-banking
+- type: APIReference
+  url: https://consumerdatastandardsaustralia.github.io/standards/#consumer-data-standards-banking-apis
 - type: LinkedIn
   url: https://www.linkedin.com/company/bank-of-us/
 - type: Blog
