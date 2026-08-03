@@ -1,0 +1,26 @@
+{
+  "provider": "bank-of-us",
+  "sources": [
+    "bank-of-us-banking-account-balances-api-openapi.yml",
+    "bank-of-us-banking-account-direct-debits-api-openapi.yml",
+    "bank-of-us-banking-account-scheduled-payments-api-openapi.yml",
+    "bank-of-us-banking-account-transactions-api-openapi.yml",
+    "bank-of-us-banking-accounts-api-openapi.yml",
+    "bank-of-us-banking-payees-api-openapi.yml",
+    "bank-of-us-banking-products-api-openapi.yml"
+  ],
+  "outputs": [
+    "bank-of-us-banking-account-balances-api-openapi.yml",
+    "bank-of-us-banking-account-direct-debits-api-openapi.yml",
+    "bank-of-us-banking-account-scheduled-payments-api-openapi.yml",
+    "bank-of-us-banking-account-transactions-api-openapi.yml",
+    "bank-of-us-banking-accounts-api-openapi.yml",
+    "bank-of-us-banking-payees-api-openapi.yml",
+    "bank-of-us-banking-products-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
