@@ -12,6 +12,17 @@ description: Bank of us is Tasmania's only customer-owned bank, a mutual authori
   (PRD) API that conforms to the Data Standards Body (DSB) Consumer Data Standards,
   and enabling customers to share account and transaction data with accredited data
   recipients under ACCC oversight.
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
