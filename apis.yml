@@ -212,6 +212,9 @@ apis:
   - type: APIReference
     url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
 common:
+- type: CapabilityMap
+  url: capabilities/bank-of-us-capability-edges.yml
+  name: Bank of us Business Capability Map
 - type: AgenticAccess
   url: agentic-access/bank-of-us-agentic-access.yml
 - type: Authentication
