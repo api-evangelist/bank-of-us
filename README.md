@@ -1,4 +1,4 @@
-# Bank of us (bank-of-us)
+# Bank of us
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,58 +66,131 @@
 
 Bank of us is Tasmania's only customer-owned bank, a mutual authorised deposit-taking institution (ADI) trading as B&E Ltd (brand "BNE LTD") and headquartered in Launceston, Tasmania. Formed from the former Bass & Equitable Building Society and rebranded to Bank of us in 2016, it is owned by its members rather than shareholders and offers home loans, personal and business banking, savings, and term deposits. As a regulated ADI it participates in Australia's Consumer Data Right (CDR / Open Banking) as a data holder, exposing a public, unauthenticated Product Reference Data (PRD) API that conforms to the Data Standards Body (DSB) Consumer Data Standards, and enabling customers to share account and transaction data with accredited data recipients under ACCC oversight.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bank-of-us/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bank-of-us/refs/heads/main/apis.yml)
+**Areas:** Finance · Banks · Open Banking · CDR · Consumer Banking · Australia · Tasmania · Mutual · Product Reference Data
 
-## Tags
+## Bank of us on APIs.io
 
-- Financial
-- Banks
-- Open Banking
-- CDR
-- Consumer Banking
-- Australia
-- Tasmania
-- Mutual
-- Product Reference Data
+Everything profiled for Bank of us is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bank-of-us/](https://apis.io/providers/bank-of-us/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2026-07-20
-- **Modified:** 2026-07-20
+- [Bank of us Banking Account Balances API](https://apis.io/apis/bank-of-us/bank-of-us-banking-account-balances-api/) — Banking Account Balance endpoints
+- [Bank of us Banking Account Direct Debits API](https://apis.io/apis/bank-of-us/bank-of-us-banking-account-direct-debits-api/) — Banking Account Direct Debit endpoints
+- [Bank of us Banking Account Scheduled Payments API](https://apis.io/apis/bank-of-us/bank-of-us-banking-account-scheduled-payments-api/) — Banking Account Scheduled Payment endpoints
+- [Bank of us Banking Account Transactions API](https://apis.io/apis/bank-of-us/bank-of-us-banking-account-transactions-api/) — Banking Account Transaction endpoints
+- [Bank of us Banking Accounts API](https://apis.io/apis/bank-of-us/bank-of-us-banking-accounts-api/) — Banking Account endpoints
+- [Bank of us Banking Payees API](https://apis.io/apis/bank-of-us/bank-of-us-banking-payees-api/) — Banking Payee endpoints
+- [Bank of us Banking Products API](https://apis.io/apis/bank-of-us/bank-of-us-banking-products-api/) — Banking Product endpoints
 
-## APIs
+### Published properties
 
-### Bank of us CDR Product Reference Data API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Public, unauthenticated Consumer Data Right Product Reference Data (PRD) API. A live GET on `https://api.bankofus.com.au/OpenBanking/cds-au/v1/banking/products` returns HTTP 200 with an `x-v` response header of 4 and a `data.products` array (27 products across home loans, personal/business banking, savings, and term deposits at the time of review). The endpoint conforms to the DSB Consumer Data Standards CDR Banking API (v1.36.0) and supports `GET /banking/products` and `GET /banking/products/{productId}`.
+#### MCP servers (1)
 
-- **Human URL:** [https://www.bankofus.com.au/open-banking](https://www.bankofus.com.au/open-banking)
-- **Base URL:** `https://api.bankofus.com.au/OpenBanking/cds-au/v1`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [bank-of-us](https://apis.io/servers/bank-of-us/bank-of-us/)
 
-- Open Banking
-- CDR
-- Product Reference Data
-- Banking
-- Products
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://www.bankofus.com.au/open-banking)
-- [API Reference](https://consumerdatastandardsaustralia.github.io/standards/#get-products)
-- [OpenAPI](openapi/bank-of-us-cds-banking-products-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Bank Of Us Agentic Access](https://apis.io/agentic-access/bank-of-us/bank-of-us-agentic-access/)
 
-## Common Properties
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [CDR Banking Banking Account Balances API](https://apis.io/collections/bank-of-us/open-bank-of-us-banking-account-balances-api/)
+- [CDR Banking Banking Account Balances Banking Account Direct Debits API](https://apis.io/collections/bank-of-us/open-bank-of-us-banking-account-direct-debits-api/)
+- [CDR Banking Banking Account Balances Banking Account Scheduled Payments API](https://apis.io/collections/bank-of-us/open-bank-of-us-banking-account-scheduled-payments-api/)
+- [CDR Banking Banking Account Balances Banking Account Transactions API](https://apis.io/collections/bank-of-us/open-bank-of-us-banking-account-transactions-api/)
+- [CDR Banking Banking Account Balances Banking Accounts API](https://apis.io/collections/bank-of-us/open-bank-of-us-banking-accounts-api/)
+- [CDR Banking Banking Account Balances Banking Payees API](https://apis.io/collections/bank-of-us/open-bank-of-us-banking-payees-api/)
+- [CDR Banking Banking Account Balances Banking Products API](https://apis.io/collections/bank-of-us/open-bank-of-us-banking-products-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Bank Of Us Cds Banking Products Overlay](https://apis.io/overlays/bank-of-us/bank-of-us-cds-banking-products-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bank Of Us Authentication](https://apis.io/security/bank-of-us/bank-of-us-authentication/)
+- [Bank Of Us Domain Security](https://apis.io/security/bank-of-us/bank-of-us-domain-security/)
+- [Bank Of Us Vulnerability Disclosure](https://apis.io/security/bank-of-us/bank-of-us-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Bank Of Us Scopes](https://apis.io/scopes/bank-of-us/bank-of-us-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.bankofus.com.au/)
-- [Documentation](https://www.bankofus.com.au/open-banking)
-- [LinkedIn](https://www.linkedin.com/company/bank-of-us/)
-- [Blog](https://www.bankofus.com.au/blog)
-- [Privacy Policy](https://www.bankofus.com.au/privacy-policy)
+- [Documentation](https://bankofus.com.au/open-banking)
+- [API reference](https://consumerdatastandardsaustralia.github.io/standards/#consumer-data-standards-banking-apis)
 - [Support](https://www.bankofus.com.au/contact)
+- [Blog](https://www.bankofus.com.au/blog)
+- [Security](https://bankofus.com.au/.well-known/security.txt)
+- [Privacy policy](https://www.bankofus.com.au/privacy-policy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 35.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 44.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 47.0 |
+| Access clarity | 10.5 |
+
+**Agent readiness 23.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 39.4** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bank-of-us/](https://apis.io/providers/bank-of-us/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bank of us: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bank-of-us/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
